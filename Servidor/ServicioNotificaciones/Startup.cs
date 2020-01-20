@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -14,6 +10,7 @@ namespace ServicioNotificaciones
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddSignalR();
         }
 
@@ -25,6 +22,13 @@ namespace ServicioNotificaciones
             }
 
             app.UseRouting();
+
+            app.UseCors(builder => builder
+                .SetIsOriginAllowed(s => Regex.IsMatch(s,"http://localhost:\\d+") )
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials()
+                );
 
             app.UseEndpoints(endpoints =>
             {
