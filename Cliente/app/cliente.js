@@ -1,7 +1,8 @@
 
 var connection = new signalR
     .HubConnectionBuilder()
-    .withUrl('http://localhost:5000/notificacionHub')    
+    .withUrl('http://localhost:5000/notificacionHub')
+    .withAutomaticReconnect()  
     .build();
 
 enviar = document.getElementById('enviar');
@@ -9,6 +10,8 @@ enviar = document.getElementById('enviar');
 enviar.disabled = true;
 
 connection.on('MostrarMensaje', mensaje => alert(mensaje));
+
+Object.defineProperty(WebSocket, 'OPEN', { value: 1 });
 
 connection.start()
     .then(() => enviar.disabled = false)
