@@ -1,8 +1,6 @@
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace ServicioNotificaciones
 {
@@ -14,17 +12,12 @@ namespace ServicioNotificaciones
             services.AddSignalR();
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-
             app.UseRouting();
 
             app.UseCors(builder => builder
-                .SetIsOriginAllowed(s => Regex.IsMatch(s,"http://localhost:\\d+") )
+                .SetIsOriginAllowed(dominio => Regex.IsMatch(dominio,"http://localhost:\\d+") )
                 .AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials()
