@@ -1,13 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
-    <title>SignarR Client</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cliente signal</title>
+    <link rel="stylesheet" href="app/css/main.css">
 </head>
+
 <body>
-    <button id="enviar" onclick="mostrarMensaje()">Ver mensaje</button>
+    <header>
+        <h1>Consumidor de notificaciones de procesos</h1>
+    </header>
+    <main>
+        <section class="crear-proceso">
+            <h3>Crear Proceso</h2>
+            <form id="formulario">
+                <input type="text" name="tipo" placeholder="Tipo proceso" required>
+                <input type="number" name="cantidad" placeholder="Cantidad sub-procesos" min="1" required>
+                <input type="button" value="Crear" onclick="crearProceso()">
+            </form>
+        </section>
+        <section class="lista-procesos">
+            <h3>Lista de procesos</h3>
+            <ul class="lista"></ul>
+        </section>
+    </main>
+    <footer>Luis Orjuela - 2020 </footer>
     <script src="node_modules/@microsoft/signalr/dist/browser/signalr.js"></script>
-    <script src="app/cliente.js"></script>
+    <script src="app/js/cliente.js"></script>
 </body>
+
 </html>

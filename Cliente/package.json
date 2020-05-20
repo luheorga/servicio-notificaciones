@@ -3,16 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "description": "Cliente SignalR Core",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "lite-server"
+    "serve": "lite-server"
   },
   "author": "Luis Orjuela",
   "license": "ISC",
   "dependencies": {
-    "@microsoft/signalr": "^3.1.0",
-    "express": "^4.17.1"
+    "@microsoft/signalr": "^3.1.0"
   },
   "devDependencies": {
     "lite-server": "^2.5.4"
