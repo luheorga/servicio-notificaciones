@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MassTransit;
 
 namespace ProductorNotificaciones
 {
@@ -21,10 +22,17 @@ namespace ProductorNotificaciones
                     {
                         services.AddControllers();
                         services.AddCors();
+                        services.AddMassTransit(cfg =>
+                        {
+                            cfg.AddBus(ctx =>
+                                Bus.Factory.CreateUsingRabbitMq()
+                            );
+                        });
+                        services.AddMassTransitHostedService();
                     });
                     webBuilder.Configure(app =>
                     {
-                        app.UseCors(a => 
+                        app.UseCors(a =>
                             a.SetIsOriginAllowed(o => o.Contains("localhost"))
                             .AllowAnyMethod()
                             .AllowAnyHeader()
