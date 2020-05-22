@@ -35,3 +35,17 @@ body {
     height: 100vh;
     font-family: 'Courier New', Courier, monospace;
 }
+
+li {
+    width: 50%; 
+    background-color: #ddd; 
+}
+
+li>div {
+  width: 1%; 
+  height: 35px; 
+  background-color: #4CAF50; 
+  text-align: center; 
+  line-height: 32px; 
+  color: black; 
+}
